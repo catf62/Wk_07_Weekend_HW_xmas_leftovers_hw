@@ -3,7 +3,7 @@ const RequestHelper = function (url) {
 };
 
 RequestHelper.prototype.get = function (onComplete) {
-  return fetch(this.url)
+  return fetch( this.url )
     .then(response => response.json());
 };
 

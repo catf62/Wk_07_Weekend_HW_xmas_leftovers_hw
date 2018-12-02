@@ -5,7 +5,8 @@ const SelectView = function (selectElement) {
 };
 
 SelectView.prototype.bindEvents = function () {
-  PubSub.subscribe('Munros:regions-ready', (evt) => {
+  PubSub.subscribe('Recipes:ingredients-ready', (evt) => {
+    console.log(evt);
     this.populateSelect(evt.detail);
   });
 
@@ -15,16 +16,16 @@ SelectView.prototype.bindEvents = function () {
   });
 };
 
-SelectView.prototype.populateSelect = function (regions) {
-  regions.forEach((region, index) => {
-    const option = this.createRegionOption(region, index);
+SelectView.prototype.populateSelect = function (ingredients) {
+  ingredients.forEach((ingredient, index) => {
+    const option = this.createIngredientOption(ingredient, index);
     this.selectElement.appendChild(option);
   })
 };
 
-SelectView.prototype.createRegionOption = function (region, index) {
+SelectView.prototype.createIngredientOption = function (ingredient, index) {
   const option = document.createElement('option');
-  option.textContent = region;
+  option.textContent = ingredient;
   option.value = index;
   return option;
 };

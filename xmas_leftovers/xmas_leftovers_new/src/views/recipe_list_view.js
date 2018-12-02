@@ -1,32 +1,32 @@
 const PubSub = require('../helpers/pub_sub.js');
-const MunroDetailView = require('./munro_detail_view');
+const RecipeDetailView = require('./recipe_detail_view');
 
-const MunroListView = function (container) {
+const RecipeListView = function (container) {
   this.container = container;
 };
 
-MunroListView.prototype.bindEvents = function () {
-  PubSub.subscribe('Munros:munros-ready', (evt) => {
+RecipeListView.prototype.bindEvents = function () {
+  PubSub.subscribe('Recipes:recipes-ready', (evt) => {
     this.clearList();
-    this.renderMunroDetailViews(evt.detail);
+    this.renderRecipeDetailViews(evt.detail);
   });
 };
 
-MunroListView.prototype.clearList = function () {
+RecipeListView.prototype.clearList = function () {
   this.container.innerHTML = '';
 };
 
-MunroListView.prototype.renderMunroDetailViews = function (munros) {
-  munros.forEach((munro) => {
-    const munroItem = this.createMunroListItem(munro);
-    this.container.appendChild(munroItem);
+RecipeListView.prototype.renderRecipeDetailViews = function (recipes) {
+  recipes.forEach((recipe) => {
+    const recipeItem = this.createRecipeListItem(recipe);
+    this.container.appendChild(recipeItem);
   });
 };
 
-MunroListView.prototype.createMunroListItem = function (munro) {
-  const munroDetailView = new MunroDetailView();
-  const munroDetail = munroDetailView.createMunroDetail(munro);
-  return munroDetail;
+RecipeListView.prototype.createRecipeListItem = function (recipe) {
+  const recipeDetailView = new RecipeDetailView();
+  const recipeDetail = recipeDetailView.createRecipeDetail(recipe);
+  return recipeDetail;
 };
 
-module.exports = MunroListView;
+module.exports = RecipeListView;

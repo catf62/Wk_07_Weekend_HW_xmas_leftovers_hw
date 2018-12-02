@@ -1,28 +1,55 @@
-const MunroDetailView = function () {};
+const RecipeDetailView = function () {};
 
-MunroDetailView.prototype.createMunroDetail = function (munro) {
-  const munroDetail = document.createElement('div');
-  munroDetail.classList.add('munro-detail');
+RecipeDetailView.prototype.createRecipeDetail = function (recipe) {
+  const recipeDetail = document.createElement('div');
+  recipeDetail.classList.add('recipe-detail');
 
-  const name = document.createElement('h3');
-  name.textContent = munro.name;
-  munroDetail.appendChild(name);
+  const title = document.createElement('h3');
+  title.classList.add('recipe-title')
+  title.textContent = recipe.title;
+
+  const recipeParent = document.createElement('div');
+  recipeParent.classList.add('recipe-parent');
+  recipeParent.appendChild(title);
+  recipeParent.appendChild(recipeDetail);
+
+  // making an image element for the html
+  const recipeImage = document.createElement('img');
+  recipeImage.classList.add('recipe-image');
+  recipeImage.src = recipe.thumbnail;
+  recipeDetail.appendChild(recipeImage);
 
   const detailsList = document.createElement('ul');
-  const meaning = this.createDetailListItem('Meaning', munro.meaning);
-  detailsList.appendChild(meaning);
+  detailsList.classList.add('recipe-list')
 
-  const height = this.createDetailListItem('Height', munro.height)
-  detailsList.appendChild(height);
+  const ingredientsList = this.createDetailListItem('Leftover Searched For', recipe.ingredients);
+  detailsList.appendChild(ingredientsList);
 
-  munroDetail.appendChild(detailsList);
-  return munroDetail;
+  // making a link element for the html
+  const recipeLink = document.createElement('a');
+  // setting the tect content of the linke element
+  recipeLink.textContent = recipe.href;
+  // setting where the link should lead to
+  recipeLink.href = recipe.href;
+  // open the link in a new tab
+  recipeLink.target = "_blank";
+  // creating list/bullet point item
+  const recipeLinkListItem = this.createDetailListItem('Link to Recipe', "")
+  // adding the link to the bullet point
+  recipeLinkListItem.appendChild(recipeLink);
+  // adding the bullet point to the list
+  detailsList.appendChild(recipeLinkListItem);
+
+
+
+  recipeDetail.appendChild(detailsList);
+  return recipeParent;
 };
 
-MunroDetailView.prototype.createDetailListItem = function (label, property) {
+RecipeDetailView.prototype.createDetailListItem = function (label, property) {
   const element = document.createElement('li');
   element.textContent = `${label}: ${property}`;
   return element;
 };
 
-module.exports = MunroDetailView;
+module.exports = RecipeDetailView;

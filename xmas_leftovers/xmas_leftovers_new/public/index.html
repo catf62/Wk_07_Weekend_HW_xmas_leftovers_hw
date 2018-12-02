@@ -3,16 +3,24 @@
   <head>
     <meta charset="utf-8">
     <title>Ghost of Christmas Dinner</title>
-    <link rel="stylesheet" href="css/headings.css">
-    <script src="js/bundle.js">
-    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/bundle.js"></script>
   </head>
   <body>
     <div class="main-heading"></div>
-    <label for="region-select">Filter Recipes By Ingredient:</label>
-    <select id="ingredient-select">
-      <option selected disabled></select>
-    </select>
+    <div class="select-wrapper">
+      <label id="select-label" for="ingredient-select">Filter Recipes By Leftover:</label>
+      <select id="ingredient-select">
+        <option value="Random" selected>Random Recipes</option>
+        <!-- <option selected disabled></select> -->
+      </select>
+    </div>
     <div id="recipe-list"></div>
+    <script src="snow.js"></script>
+    <script>
+      snowStorm.snowColor = '#99ccff';   // blue-ish snow!?
+      snowStorm.flakesMaxActive = 96;    // show more snow on screen at once
+      snowStorm.useTwinkleEffect = true; // let the snow flicker in and out of view
+    </script>
   </body>
 </html>
