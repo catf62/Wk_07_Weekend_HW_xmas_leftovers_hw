@@ -1,0 +1,13 @@
+.main-heading {
+  background-image: url("banner2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 200px;
+  background-size: 700px 200px;
+  margin: 0px;
+};
+
+/* font-family: "Georgia", Times, serif;
+color: Red;
+font-style: italic;
+text-align: center; */
